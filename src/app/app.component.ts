@@ -1,21 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Product } from './product.model';
 
 @Component({
   selector: 'inventory-app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  product: Product;
+  products: Array<Product>;
 
   constructor() {
-    this.product = new Product(
-        'ICEHAT',
-        'A nice black hat.',
-        'resources/images/products/black-hat.jpg',
+    this.products = [
+      new Product(
+        'MYSHOES',
+        'Black Running Shoes',
+       '/assets/images/products/black-shoes.jpg',
+        ['Men', 'Shoes', 'Running  Shoes'],
+        109.99
+      ),
+      new Product(
+        'NEATOJACKET',
+        'Blue Jacket',
+        '/assets/images/products/blue-jacket.jpg',
+        ['Women', 'Apparel', 'Jackets & Vests'],
+        238.99
+      ),
+      new Product(
+        'NICEHAT',
+        'A nice Black Hat',
+        '/assets/images/products/black-hat.jpg',
         ['Men', 'Accesories', 'Hats'],
         29.99
-      );
+      )
+    ];
+  }
+
+  productWasSelected(product: Product): void {
+    console.log('Product clicked: ', product);
   }
 }
